@@ -1,4 +1,4 @@
-# Energy Monitoring App
+# WattBot
 
 A Flutter application for monitoring and managing energy consumption in homes. This app provides users with real-time energy usage data, room-by-room consumption breakdown, and an AI chatbot assistant for energy-saving tips.
 

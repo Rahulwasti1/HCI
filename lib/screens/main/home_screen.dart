@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hci/constants/colors.dart';
 import 'package:hci/providers/auth_provider.dart';
 import 'package:hci/providers/energy_provider.dart';
+import 'package:hci/screens/main/add_room_screen.dart';
 import 'package:hci/widgets/energy_chart.dart';
 import 'package:hci/widgets/room_usage_card.dart';
 import 'package:hci/widgets/time_frame_selector.dart';
@@ -20,7 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     // Load energy data when screen initializes
+    _loadData();
+  }
+
+  void _loadData() {
+    // Use Future.microtask to avoid calling setState during build
     Future.microtask(() {
+      if (!mounted) return;
       Provider.of<EnergyProvider>(context, listen: false).loadEnergyData();
     });
   }
@@ -149,7 +156,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primary.withOpacity(0.4),
+                                  color: Color.fromARGB(
+                                    102, // 0.4 * 255 = 102
+                                    AppColors.primary.red,
+                                    AppColors.primary.green,
+                                    AppColors.primary.blue,
+                                  ),
                                   blurRadius: 10,
                                   offset: const Offset(0, 4),
                                 ),
@@ -291,6 +303,59 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 )
                               : const SizedBox(),
+
+                          // Add Room Button
+                          const SizedBox(height: 16),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const AddRoomScreen(),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primary,
+                                foregroundColor: Colors.white,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: const Color(
+                                          0x33FFFFFF), // White with 20% opacity (0x33)
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: const Icon(
+                                      Icons.add,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  const Text(
+                                    'Add Room',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
                         ],
                       ),
                     ),

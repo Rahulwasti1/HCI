@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hci/constants/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:hci/constants/colors.dart';
 import 'package:hci/navigation/app_router.dart';
 import 'package:hci/providers/auth_provider.dart';
-import 'package:hci/providers/chat_provider.dart';
 import 'package:hci/providers/energy_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:hci/providers/chat_provider.dart';
+import 'package:hci/screens/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -22,10 +24,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ChatProvider()),
       ],
       child: MaterialApp(
-        title: 'Energy Monitor',
-        theme: AppTheme.lightTheme,
+        title: 'WattBot',
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouter.signIn,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+          useMaterial3: true,
+        ),
+        home: const SplashScreen(),
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

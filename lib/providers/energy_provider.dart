@@ -3,7 +3,6 @@ import 'package:hci/models/energy_usage_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:math';
-import 'package:intl/intl.dart';
 
 class EnergyProvider with ChangeNotifier {
   EnergyUsageModel? _energyData;

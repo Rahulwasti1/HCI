@@ -59,7 +59,7 @@ class EnergyChart extends StatelessWidget {
               horizontalInterval: maxY / 3,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color: Colors.white.withOpacity(0.2),
+                  color: const Color(0x33FFFFFF), // White with 20% opacity
                   strokeWidth: 1,
                 );
               },
@@ -93,10 +93,10 @@ class EnergyChart extends StatelessWidget {
 
                   return BarTooltipItem(
                     '$dateLabel: $usage kWh',
-                    const TextStyle(
-                      color: AppColors.text,
-                      fontWeight: FontWeight.bold,
+                    TextStyle(
+                      color: const Color(0x33FFFFFF), // White with 20% opacity
                       fontSize: 8,
+                      fontWeight: FontWeight.bold,
                     ),
                   );
                 },
@@ -186,7 +186,7 @@ class EnergyChart extends StatelessWidget {
                 barRods: [
                   BarChartRodData(
                     toY: data.usage,
-                    color: Colors.white.withOpacity(0.8),
+                    color: const Color(0xCCFFFFFF), // White with 80% opacity
                     width: adjustedBarWidth,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4),
@@ -195,7 +195,7 @@ class EnergyChart extends StatelessWidget {
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
                       toY: maxY,
-                      color: Colors.white.withOpacity(0.1),
+                      color: const Color(0x1AFFFFFF), // White with 10% opacity
                     ),
                   ),
                 ],

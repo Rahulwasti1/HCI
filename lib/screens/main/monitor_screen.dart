@@ -26,7 +26,7 @@ class MonitorScreen extends StatelessWidget {
             Icon(
               Icons.bolt,
               size: 80,
-              color: AppColors.primary.withOpacity(0.7),
+              color: const Color(0xB32D6BFA),
             ),
             const SizedBox(height: 24),
             const Text(

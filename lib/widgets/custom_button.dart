@@ -42,12 +42,15 @@ class CustomButton extends StatelessWidget {
               ? (textColor ?? AppColors.primary)
               : (textColor ?? Colors.white),
           elevation: isOutlined ? 0 : 1,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           side: isOutlined
               ? BorderSide(color: textColor ?? AppColors.primary)
               : null,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
           ),
+          minimumSize: Size(isFullWidth ? double.infinity : 120, height),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         child: isLoading
             ? const SizedBox(
@@ -59,17 +62,22 @@ class CustomButton extends StatelessWidget {
                 ),
               )
             : Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (prefixIcon != null) ...[
                     Icon(prefixIcon),
                     const SizedBox(width: 8),
                   ],
-                  Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   if (suffixIcon != null) ...[

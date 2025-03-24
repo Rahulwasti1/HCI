@@ -19,8 +19,8 @@ class TimeFrameSelector extends StatelessWidget {
     return Container(
       height: 36,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(50),
+        color: const Color(0x26FFFFFF), // White with 15% opacity
       ),
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
       child: LayoutBuilder(builder: (context, constraints) {

@@ -119,24 +119,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: _agreedToTerms,
-                    activeColor: AppColors.primary,
-                    onChanged: (value) {
-                      setState(() {
-                        _agreedToTerms = value ?? false;
-                        if (_agreedToTerms) {
-                          _termsError = null;
-                        }
-                      });
-                    },
+                  Transform.scale(
+                    scale: 0.9,
+                    child: Checkbox(
+                      value: _agreedToTerms,
+                      activeColor: AppColors.primary,
+                      onChanged: (value) {
+                        setState(() {
+                          _agreedToTerms = value ?? false;
+                          if (_agreedToTerms) {
+                            _termsError = null;
+                          }
+                        });
+                      },
+                    ),
                   ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.only(top: 10),
                           child: RichText(
                             text: TextSpan(
                               text: 'Agree with ',
@@ -177,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
               // Sign Up button
               CustomButton(
                 text: 'Sign Up',

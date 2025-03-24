@@ -19,7 +19,13 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     // Load chat messages when screen initializes
+    _loadMessages();
+  }
+
+  void _loadMessages() {
+    // Use Future.microtask to avoid calling setState during build
     Future.microtask(() {
+      if (!mounted) return;
       Provider.of<ChatProvider>(context, listen: false).loadMessages();
     });
   }
@@ -167,7 +173,7 @@ class _ChatScreenState extends State<ChatScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: const Color(0x1A9E9E9E), // Grey with 10% opacity
                   spreadRadius: 1,
                   blurRadius: 3,
                   offset: const Offset(0, -1),
